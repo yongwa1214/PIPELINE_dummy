@@ -35,6 +35,7 @@ public class GamerProfile {
     @Column(name = "last_login", nullable = false)
     private Timestamp lastLogin;
 
+    @Builder.Default
     @Column(name = "wallet", precision = 10, scale = 2)
     private BigDecimal wallet = BigDecimal.ZERO;
 }

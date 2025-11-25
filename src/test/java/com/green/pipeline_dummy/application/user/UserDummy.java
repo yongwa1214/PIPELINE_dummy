@@ -7,6 +7,7 @@ import com.green.pipeline_dummy.entitiy.common.CommonCode;
 import com.green.pipeline_dummy.entitiy.country.Country;
 import com.green.pipeline_dummy.entitiy.user.GamerProfile;
 import com.green.pipeline_dummy.entitiy.user.User;
+import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,10 @@ import java.util.concurrent.ThreadLocalRandom;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class UserDummy extends Dummy {
     @Autowired UserRepository userRepository;
+    @Autowired GamerProfileRepository gamerProfileRepository;
     @Autowired CountryRepository countryRepository;
     @Autowired CommonCodeRepository commonCodeRepository;
+    @Autowired private EntityManager em;
 
     @Test
     @Rollback(false)
@@ -37,6 +40,7 @@ public class UserDummy extends Dummy {
            userRepository.save(saveUserInfo(role)) ;
         }
         userRepository.flush();
+
     }
 
     @Test
@@ -72,7 +76,7 @@ public class UserDummy extends Dummy {
 
 
     @Test
-    @Rollback
+    @Rollback(false)
     void saveGamerProfile(){
         List<User> userList = userRepository.findAllByUserRole(commonCodeRepository.findById("RO-GM").get());
 
@@ -85,8 +89,12 @@ public class UserDummy extends Dummy {
                     .lastLogin(randomDateFuture())
                     .wallet(randomWallet(50000))
                 .build();
+            gamerProfileRepository.save(gp);
+            gamerProfileRepository.flush();
+            em.clear();
 
         }
+
     }
 
 

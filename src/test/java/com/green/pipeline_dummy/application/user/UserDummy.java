@@ -5,6 +5,7 @@ import com.green.pipeline_dummy.application.common.CommonCodeRepository;
 import com.green.pipeline_dummy.application.common.CountryRepository;
 import com.green.pipeline_dummy.entitiy.common.CommonCode;
 import com.green.pipeline_dummy.entitiy.country.Country;
+import com.green.pipeline_dummy.entitiy.user.DeveloperProfile;
 import com.green.pipeline_dummy.entitiy.user.GamerProfile;
 import com.green.pipeline_dummy.entitiy.user.User;
 import jakarta.persistence.EntityManager;
@@ -30,6 +31,8 @@ public class UserDummy extends Dummy {
     @Autowired CountryRepository countryRepository;
     @Autowired CommonCodeRepository commonCodeRepository;
     @Autowired private EntityManager em;
+    @Autowired
+    private DeveloperProfileRepository developerProfileRepository;
 
     @Test
     @Rollback(false)
@@ -97,6 +100,32 @@ public class UserDummy extends Dummy {
 
     }
 
+    // developer 더미 생성
+    @Test
+    @Rollback(false)
+    void saveDeveloperProfile(){
+        List<User> userList = userRepository.findAllByUserRole(commonCodeRepository.findById("RO-DP").get());
+        String[] type = {"RO-DS-CORP","RO-DS-INDV"};
+
+
+        for(User u : userList){
+            int random = (int)(Math.random()*2);
+            DeveloperProfile dp = DeveloperProfile.builder()
+                    .user(u)
+                    .entityType(commonCodeRepository.findById(random == 1 ? type[1] : type[0]).get())
+                    .developerName(random == 1 ? faker.company().name() : faker.name().fullName())
+                    .webUrl("https://" + faker.internet().domainWord() + ".example.com")
+                    .postCode(faker.address().zipCode())
+                    .address(faker.address().streetAddress())
+                    .addressDetail("Suite " + faker.number().numberBetween(10, 999))
+                    .phone(faker.phoneNumber().phoneNumber())
+                    .build();
+            developerProfileRepository.save(dp);
+            developerProfileRepository.flush();
+            em.clear();
+        }
+
+    }
 
     // 미래 임의 날짜
     private static Timestamp randomDateFuture() {

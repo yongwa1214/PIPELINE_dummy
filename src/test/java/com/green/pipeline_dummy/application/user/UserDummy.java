@@ -88,4 +88,7 @@ public class UserDummy extends Dummy {
         LocalDateTime randomDateTime = LocalDateTime.ofEpochSecond(randomEpoch, 0, java.time.ZoneOffset.UTC);
         return Timestamp.valueOf(randomDateTime);
     }
+    void test(){
+        System.out.println(123);
+    }
 }

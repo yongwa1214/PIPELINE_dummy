@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3307/youbank
-    username: root
-    password: mysql502
+    url: jdbc:mysql://192.168.0.144:3307/db_odd_adv_3
+    username: odd_adv_3
+    password: view502
 
   jpa:
     database: mysql
@@ -12,9 +12,9 @@ spring:
       hibernate:
         jdbc:
           batch_size: 20
-        format_sql: true
+        #format_sql: true
         order_updates: true
-        show_sql: true
+        #show_sql: true
 
 mybatis:
   configuration:

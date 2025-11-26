@@ -11,4 +11,9 @@
            ,updated_at = #{updatedAt}
     </insert>
 
+    <insert id="saveBlock">
+        INSERT IGNORE INTO block_user
+        set from_user = #{fromUser}
+            , to_user = #{toUser}
+    </insert>
 </mapper>

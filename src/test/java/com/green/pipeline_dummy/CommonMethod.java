@@ -5,6 +5,7 @@ import com.green.pipeline_dummy.model.RandomDate;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class CommonMethod {
@@ -22,5 +23,27 @@ public class CommonMethod {
         long randomEpoch = ThreadLocalRandom.current().nextLong(startEpoch, endEpoch + 1);
         LocalDateTime randomDateTime = LocalDateTime.ofEpochSecond(randomEpoch, 0, java.time.ZoneOffset.UTC);
         return randomDateTime;
+    }
+
+    public static String createName(int num){
+        Random random2 = new Random();
+        StringBuilder userId = new StringBuilder();
+
+
+        for (int i = 0; i < num; i++) {
+            int type = random2.nextInt(3); // 0: 대문자, 1: 소문자, 2: 숫자
+            switch(type) {
+                case 0:
+                    userId.append((char)('A' + random2.nextInt(26))); // 대문자
+                    break;
+                case 1:
+                    userId.append((char)('a' + random2.nextInt(26))); // 소문자
+                    break;
+                case 2:
+                    userId.append(random2.nextInt(10)); // 숫자
+                    break;
+            }
+        }
+        return userId.toString();
     }
 }

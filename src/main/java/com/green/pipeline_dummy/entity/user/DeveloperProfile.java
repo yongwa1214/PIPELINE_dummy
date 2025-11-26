@@ -1,6 +1,6 @@
-package com.green.pipeline_dummy.entitiy.user;
+package com.green.pipeline_dummy.entity.user;
 
-import com.green.pipeline_dummy.entitiy.common.CommonCode;
+import com.green.pipeline_dummy.entity.common.CommonCode;
 import jakarta.persistence.*;
 import lombok.*;
 

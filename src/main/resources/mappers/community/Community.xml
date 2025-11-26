@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.pipeline_dummy.application.community.CommunityMapper">
+    <insert id="saveForum">
+        INSERT IGNORE INTO community_forum
+        SET user_id = #{userId}
+        ,game_id = #{gameId}
+        ,forum_title = #{forumTitle}
+        ,forum_contents = #{forumContents}
+        ,pinned = #{pinned}
+        ,created_at = #{createdAt}
+        ,updated_at = #{updatedAt}
+        ,is_deleted = #{isDeleted}
+    </insert>
+
+    <insert id="saveForumComment">
+        INSERT IGNORE INTO community_forum_comment
+        SET user_id = #{userId}
+        , forum_id = #{forumId}
+        , forum_comment_contents = #{forumCommentContents}
+        ,created_at = #{createdAt}
+        ,updated_at = #{updatedAt}
+        ,is_deleted = #{isDeleted}
+    </insert>
+
+    <insert id="ForumMediaDummyDto">
+
+    </insert>
+
+    <insert id="saveForumBookMark">
+
+    </insert>
+
+    <select id="findGameIds">
+        SELECT game_id
+        FROM game
+        WHERE STATUS = 'ST-ACT'
+    </select>
+
+    <select id="findUserIds">
+        SELECT user_id
+        FROM User
+    </select>
+
+    <select id="countPinnedByGameId">
+        SELECT COUNT(*)
+        FROM community_forum
+        WHERE game_id = #{gameId}
+        AND pinned = 1
+    </select>
+
+    <select id="findForumIds">
+        SELECT forum_id
+        FROM community_forum
+    </select>
+</mapper>

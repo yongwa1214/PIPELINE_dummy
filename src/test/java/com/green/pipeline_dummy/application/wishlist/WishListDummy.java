@@ -2,7 +2,7 @@ package com.green.pipeline_dummy.application.wishlist;
 
 import com.green.pipeline_dummy.CommonMethod;
 import com.green.pipeline_dummy.MbDummy;
-import com.green.pipeline_dummy.application.cart.WishList;
+import com.green.pipeline_dummy.application.cart.WishListMapper;
 import com.green.pipeline_dummy.application.cart.model.WishListReq;
 import com.green.pipeline_dummy.application.game.GameMapper;
 import com.green.pipeline_dummy.application.game.model.GameIdRes;
@@ -17,12 +17,12 @@ import java.util.List;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class WishListDummy extends MbDummy {
     @Autowired GameMapper gameMapper;
-    @Autowired WishList wishList;
+    @Autowired WishListMapper wishListMapper;
 
     @Test
     @Rollback(false)
     void saveWishList(){
-        final int SIZE = 20_000;
+        final int SIZE = 100_000;
         List<GameIdRes> gameList = gameMapper.findByStatus();
         for(int i = 0 ; i < SIZE; i++ ){
             int num = (int)(Math.random() * SIZE);
@@ -40,6 +40,8 @@ public class WishListDummy extends MbDummy {
                     .gmProfileId(gm_id)
                     .createdAt(CommonMethod.randomDateFuture(create))
                     .build();
+
+            wishListMapper.saveWishList(wishListReq);
         }
     }
 }

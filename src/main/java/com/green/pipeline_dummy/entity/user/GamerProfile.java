@@ -1,4 +1,4 @@
-package com.green.pipeline_dummy.entitiy.user;
+package com.green.pipeline_dummy.entity.user;
 
 import jakarta.persistence.*;
 import lombok.*;

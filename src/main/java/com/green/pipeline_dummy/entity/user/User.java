@@ -1,11 +1,9 @@
-package com.green.pipeline_dummy.entitiy.user;
+package com.green.pipeline_dummy.entity.user;
 
-import com.green.pipeline_dummy.entitiy.common.CommonCode;
-import com.green.pipeline_dummy.entitiy.country.Country;
+import com.green.pipeline_dummy.entity.common.CommonCode;
+import com.green.pipeline_dummy.entity.country.Country;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "`user`") // 예약어 충돌 방지

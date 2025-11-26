@@ -1,6 +1,6 @@
 package com.green.pipeline_dummy.application.user;
 
-import com.green.pipeline_dummy.Dummy;
+import com.green.pipeline_dummy.JpaDummy;
 import com.green.pipeline_dummy.application.common.CommonCodeRepository;
 import com.green.pipeline_dummy.application.common.CountryRepository;
 import com.green.pipeline_dummy.entitiy.common.CommonCode;
@@ -25,7 +25,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class UserDummy extends Dummy {
+public class UserDummy extends JpaDummy {
     @Autowired UserRepository userRepository;
     @Autowired GamerProfileRepository gamerProfileRepository;
     @Autowired CountryRepository countryRepository;
@@ -112,8 +112,8 @@ public class UserDummy extends Dummy {
             int random = (int)(Math.random()*2);
             DeveloperProfile dp = DeveloperProfile.builder()
                     .user(u)
-                    .entityType(commonCodeRepository.findById(random == 1 ? type[1] : type[0]).get())
-                    .developerName(random == 1 ? faker.company().name() : faker.name().fullName())
+                    .entityType(commonCodeRepository.findById(random == 0 ? type[0] : type[1]).get())
+                    .developerName(random == 0 ? faker.company().name() : faker.name().fullName())
                     .webUrl("https://" + faker.internet().domainWord() + ".example.com")
                     .postCode(faker.address().zipCode())
                     .address(faker.address().streetAddress())

@@ -9,4 +9,5 @@ import java.util.List;
 @Mapper
 public interface GameMapper {
     List<GameIdRes> findByStatus();
+    List<Long> findGameIds();
 }

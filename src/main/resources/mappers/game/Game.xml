@@ -7,4 +7,9 @@
         FROM game
         WHERE STATUS = 'ST-ACT'
     </select>
+
+    <select id="findGameIds">
+        SELECT game_id
+        FROM game;
+    </select>
 </mapper>

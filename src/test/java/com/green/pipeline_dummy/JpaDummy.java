@@ -1,8 +1,10 @@
 package com.green.pipeline_dummy;
 
 import net.datafaker.Faker;
+import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+
 
 import java.util.Locale;
 

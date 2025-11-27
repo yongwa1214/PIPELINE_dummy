@@ -179,5 +179,12 @@ public class GameDummy extends JpaDummy {
     void savePlayShots() {
         playShotDummy.generatePlayShots();
     }
+    @Autowired
+    private RegionalPriceDummy regionalPriceDummy;
 
+    @Test
+    @Rollback(false)
+    void saveRegionalPrices() {
+        regionalPriceDummy.generateRegionalPrices();
+    }
 }

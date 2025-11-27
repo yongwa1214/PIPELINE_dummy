@@ -14,8 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CommunityDummy extends MbDummy {
@@ -28,7 +30,7 @@ public class CommunityDummy extends MbDummy {
     @Test
     @Rollback(false)
     void saveForum() {
-        final int SIZE = 2_000;
+        final int SIZE = 1_000_000;
 
         List<Long> releasedGameIds = communityMapper.findGameIds(); // '출시중' 게임만
         List<Long> userIds = communityMapper.findUserIds(); // '모든' 유저
@@ -37,14 +39,14 @@ public class CommunityDummy extends MbDummy {
 
             Long gameId = releasedGameIds.get(
                     faker.number().numberBetween(0, releasedGameIds.size()));
-            /*
+
             int pinnedCnt = communityMapper.countPinnedByGameId(gameId);
 
             int pinned = 0;
             if (pinnedCnt < 3) {
                 pinned = faker.number().numberBetween(0, 10) == 0 ? 1 : 0;
             }
-            */
+
 
             // 날짜
             RandomDate create = RandomDate.builder()
@@ -70,7 +72,7 @@ public class CommunityDummy extends MbDummy {
                     .gameId(gameId)
                     .forumTitle(faker.pokemon().name())
                     .forumContents(faker.lorem().paragraph())
-                    .pinned(0)
+                    .pinned(pinned)
                     .createdAt(createdAt)
                     .updatedAt(createdAt.isBefore(updatedAt) ? updatedAt : createdAt)
                     // 삭제 확률 10%
@@ -85,7 +87,7 @@ public class CommunityDummy extends MbDummy {
     @Test
     @Rollback(value = false)
     void saveForumComment() {
-        final int SIZE = 100_000;
+        final int SIZE = 3_000_000;
 
         List<Long> userIds = communityMapper.findUserIds(); // '모든' 유저
         List<Long> forumIds = communityMapper.findForumIds();
@@ -168,9 +170,18 @@ public class CommunityDummy extends MbDummy {
     void saveForumBookmark() {
         final int SIZE = 100_000;
 
-        List<Long> userIds = communityMapper.findUserIds(); // '모든' 유저
-        List<Long> forumIds = communityMapper.findForumIds();
+        List<Long> userIds = communityMapper.findUserIds(); // 모든 유저
+        List<Long> forumIds = communityMapper.findForumIds(); // 모든 포럼
+        Set<String> existing = new HashSet<>();
+
         for (int i = 0; i < SIZE; i++) {
+            Long userId = userIds.get(faker.number().numberBetween(0, userIds.size()));
+            Long forumId = forumIds.get(faker.number().numberBetween(0, forumIds.size()));
+            String key = userId + "-" + forumId;
+
+            if (existing.contains(key)) continue; // 중복 방지
+            existing.add(key);
+
             RandomDate create = RandomDate.builder()
                     .startYear(2023)
                     .startMonth(3)
@@ -181,6 +192,8 @@ public class CommunityDummy extends MbDummy {
             LocalDateTime createdAt = CommonMethod.randomDateFuture(create);
 
             ForumBookmarkDummyDto dto = ForumBookmarkDummyDto.builder()
+                    .userId(userId)
+                    .forumId(forumId)
                     .createdAt(createdAt)
                     .build();
 

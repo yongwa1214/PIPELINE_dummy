@@ -34,7 +34,10 @@
     </insert>
 
     <insert id="saveForumBookMark">
-
+        INSERT IGNORE INTO community_forum_bookmark
+        SET forum_id = #{forumId}
+        ,user_id = #{userId}
+        ,created_at = #{createdAt}
     </insert>
 
     <select id="findGameIds">
@@ -45,7 +48,7 @@
 
     <select id="findUserIds">
         SELECT user_id
-        FROM User
+        FROM user
     </select>
 
     <select id="findGamerIds">

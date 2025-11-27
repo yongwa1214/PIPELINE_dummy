@@ -14,7 +14,7 @@
     </insert>
 
     <insert id="saveReviewComment">
-        INSERT IGNORE INTO community_review
+        INSERT IGNORE INTO community_review_comment
         SET user_id = #{userId}
         ,review_id = #{reviewId}
         ,review_comment_contents = #{reviewCommentContents}

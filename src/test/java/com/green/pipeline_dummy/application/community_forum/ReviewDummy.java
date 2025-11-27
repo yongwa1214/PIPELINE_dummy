@@ -31,7 +31,7 @@ public class ReviewDummy extends MbDummy {
     @Test
     @Rollback(false)
     void saveReview() {
-        final int SIZE = 100_000;
+        final int SIZE = 1_000_000;
 
         List<Long> releasedGameIds = forumMapper.findGameIds();
         List<Long> gamerIds = forumMapper.findGamerIds();
@@ -63,8 +63,7 @@ public class ReviewDummy extends MbDummy {
             LocalDateTime updatedAt = CommonMethod.randomDateFuture(update);
             LocalDateTime createdAt = CommonMethod.randomDateFuture(create);
 
-            ReviewDummyDto reviewDummyDto = ReviewDummyDto
-                    .builder()
+            ReviewDummyDto reviewDummyDto = ReviewDummyDto.builder()
                     .gmProfileId(gmId)
                     .gameId(gameId)
                     .reviewContents(faker.lorem().paragraph())
@@ -82,7 +81,7 @@ public class ReviewDummy extends MbDummy {
     @Test
     @Rollback(false)
     void saveReviewComment() {
-        final int SIZE = 100_000;
+        final int SIZE = 3_000_000;
 
         List<Long> reviewIds = reviewMapper.findReview();
         List<Long> userIds = forumMapper.findUserIds();

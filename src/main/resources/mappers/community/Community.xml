@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.green.pipeline_dummy.application.community.CommunityMapper">
+<mapper namespace="com.green.pipeline_dummy.application.community_forum.ForumMapper">
     <insert id="saveForum">
         INSERT IGNORE INTO community_forum
         SET user_id = #{userId}
@@ -25,11 +25,19 @@
     </insert>
 
     <insert id="ForumMediaDummyDto">
-
+        INSERT IGNORE INTO community_forum_comment
+        SET forum_id = #{forumId}
+        , forum_media = #{forumMedia}
+        , forum_media_type = #{forumMediaType}
+        ,created_at = #{createdAt}
+        ,updated_at = #{updatedAt}
     </insert>
 
     <insert id="saveForumBookMark">
-
+        INSERT IGNORE INTO community_forum_bookmark
+        SET forum_id = #{forumId}
+        ,user_id = #{userId}
+        ,created_at = #{createdAt}
     </insert>
 
     <select id="findGameIds">
@@ -40,7 +48,12 @@
 
     <select id="findUserIds">
         SELECT user_id
-        FROM User
+        FROM user
+    </select>
+
+    <select id="findGamerIds">
+        SELECT gm_profile_id
+        FROM gamer_profile
     </select>
 
     <select id="countPinnedByGameId">

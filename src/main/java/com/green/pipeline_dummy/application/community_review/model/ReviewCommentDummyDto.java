@@ -1,4 +1,4 @@
-package com.green.pipeline_dummy.application.community.model;
+package com.green.pipeline_dummy.application.community_review.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,10 +11,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @ToString
-public class ForumMediaDummyDto {
-    private Long forumId;
-    private String forumMedia;
-    private String forumMediaType;
+public class ReviewCommentDummyDto {
+    private Long userId;
+    private Long reviewId;
+    private String reviewCommentContents;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

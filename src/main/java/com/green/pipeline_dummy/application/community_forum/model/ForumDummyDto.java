@@ -1,4 +1,4 @@
-package com.green.pipeline_dummy.application.community.model;
+package com.green.pipeline_dummy.application.community_forum.model;
 
 import lombok.*;
 

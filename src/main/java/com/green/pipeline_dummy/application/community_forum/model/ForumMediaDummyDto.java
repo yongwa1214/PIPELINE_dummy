@@ -1,4 +1,4 @@
-package com.green.pipeline_dummy.application.community.model;
+package com.green.pipeline_dummy.application.community_forum.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,11 +11,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @ToString
-public class ForumCommentDummyDto {
-    private Long userId;
+public class ForumMediaDummyDto {
     private Long forumId;
-    private String forumCommentContents;
+    private String forumMedia;
+    private String forumMediaType;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private int isDeleted;
 }

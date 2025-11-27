@@ -1,11 +1,11 @@
-package com.green.pipeline_dummy.application.community;
+package com.green.pipeline_dummy.application.community_forum;
 
 import com.green.pipeline_dummy.CommonMethod;
 import com.green.pipeline_dummy.MbDummy;
-import com.green.pipeline_dummy.application.community.model.ForumBookmarkDummyDto;
-import com.green.pipeline_dummy.application.community.model.ForumCommentDummyDto;
-import com.green.pipeline_dummy.application.community.model.ForumDummyDto;
-import com.green.pipeline_dummy.application.community.model.ForumMediaDummyDto;
+import com.green.pipeline_dummy.application.community_forum.model.ForumBookmarkDummyDto;
+import com.green.pipeline_dummy.application.community_forum.model.ForumCommentDummyDto;
+import com.green.pipeline_dummy.application.community_forum.model.ForumDummyDto;
+import com.green.pipeline_dummy.application.community_forum.model.ForumMediaDummyDto;
 import com.green.pipeline_dummy.model.RandomDate;
 import net.datafaker.Faker;
 import org.junit.jupiter.api.Test;
@@ -19,10 +19,12 @@ import java.util.Locale;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CommunityDummy extends MbDummy {
-    @Autowired CommunityMapper communityMapper;
+    @Autowired
+    private ForumMapper communityMapper;
 
     Faker faker = new Faker(Locale.KOREA);
 
+    // 포럼 글 더미 데이터
     @Test
     @Rollback(false)
     void saveForum() {
@@ -79,6 +81,7 @@ public class CommunityDummy extends MbDummy {
         }
     }
 
+    // 포럼 글 댓글 더미 데이터
     @Test
     @Rollback(value = false)
     void saveForumComment() {
@@ -121,6 +124,7 @@ public class CommunityDummy extends MbDummy {
         }
     }
 
+    // 포럼 글 이미지 넣기
     @Test
     @Rollback(value = false)
     void saveForumMedia() {
@@ -158,6 +162,7 @@ public class CommunityDummy extends MbDummy {
         }
     }
 
+    // 포럼 글 북마크 더미 데이터
     @Test
     @Rollback(value = false)
     void saveForumBookmark() {
@@ -173,19 +178,13 @@ public class CommunityDummy extends MbDummy {
                     .endMonth(11)
                     .endDate(20)
                     .build();
-            RandomDate update = RandomDate.builder()
-                    .startYear(2023)
-                    .startMonth(10)
-                    .startDate(1)
-                    .endMonth(11)
-                    .endDate(20)
-                    .build();
-            LocalDateTime updatedAt =CommonMethod.randomDateFuture(update);
             LocalDateTime createdAt = CommonMethod.randomDateFuture(create);
 
-            ForumBookmarkDummyDto dto = ForumBookmarkDummyDto
-                    .builder()
+            ForumBookmarkDummyDto dto = ForumBookmarkDummyDto.builder()
+                    .createdAt(createdAt)
                     .build();
+
+            communityMapper.saveForumBookMark(dto);
         }
 
     }

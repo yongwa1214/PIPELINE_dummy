@@ -1,4 +1,4 @@
-package com.green.pipeline_dummy.application.community.model;
+package com.green.pipeline_dummy.application.community_news.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,8 +11,11 @@ import java.time.LocalDateTime;
 @Builder
 @ToString
 @AllArgsConstructor
-public class ForumBookmarkDummyDto {
-    private Long forumId;
+public class NewsCommentDummyDto {
     private Long userId;
+    private Long newsId;
+    private String newsCommentContents;
     private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+    private int isDeleted;
 }

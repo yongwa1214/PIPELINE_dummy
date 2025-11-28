@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface CommunityMapper {
+public interface ForumMapper {
     void saveForum(ForumDummyDto dto);
     void saveForumComment(ForumCommentDummyDto dto);
     void saveForumMedia(ForumMediaDummyDto dtd);
@@ -17,5 +17,6 @@ public interface CommunityMapper {
     List<Long> findGameIds();
     List<Long> findUserIds();
     List<Long> findForumIds();
+    List<Long> findGamerIds();
     int countPinnedByGameId(Long gameId);
 }

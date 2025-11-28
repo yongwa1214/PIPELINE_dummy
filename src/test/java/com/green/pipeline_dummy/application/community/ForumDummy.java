@@ -1,11 +1,11 @@
-package com.green.pipeline_dummy.application.community_forum;
+package com.green.pipeline_dummy.application.community;
 
 import com.green.pipeline_dummy.CommonMethod;
 import com.green.pipeline_dummy.MbDummy;
-import com.green.pipeline_dummy.application.community_forum.model.ForumBookmarkDummyDto;
-import com.green.pipeline_dummy.application.community_forum.model.ForumCommentDummyDto;
-import com.green.pipeline_dummy.application.community_forum.model.ForumDummyDto;
-import com.green.pipeline_dummy.application.community_forum.model.ForumMediaDummyDto;
+import com.green.pipeline_dummy.application.community.model.ForumBookmarkDummyDto;
+import com.green.pipeline_dummy.application.community.model.ForumCommentDummyDto;
+import com.green.pipeline_dummy.application.community.model.ForumDummyDto;
+import com.green.pipeline_dummy.application.community.model.ForumMediaDummyDto;
 import com.green.pipeline_dummy.model.RandomDate;
 import net.datafaker.Faker;
 import org.junit.jupiter.api.Test;
@@ -20,7 +20,7 @@ import java.util.Locale;
 import java.util.Set;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class CommunityDummy extends MbDummy {
+public class ForumDummy extends MbDummy {
     @Autowired
     private ForumMapper communityMapper;
 

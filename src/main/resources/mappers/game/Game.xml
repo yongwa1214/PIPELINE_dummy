@@ -10,6 +10,14 @@
 
     <select id="findGameIds">
         SELECT game_id
-        FROM game;
+        FROM game
+        WHERE STATUS = 'ST-ACT'
+        AND base_game_id IS NULL
+    </select>
+
+    <select id="findAllGameIds">
+        SELECT game_id
+        FROM game
+        WHERE STATUS = 'ST-ACT'
     </select>
 </mapper>

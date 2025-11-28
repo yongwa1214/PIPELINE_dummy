@@ -1,4 +1,4 @@
-package com.green.pipeline_dummy.application.community_forum;
+package com.green.pipeline_dummy.application.community;
 
 import com.green.pipeline_dummy.CommonMethod;
 import com.green.pipeline_dummy.MbDummy;

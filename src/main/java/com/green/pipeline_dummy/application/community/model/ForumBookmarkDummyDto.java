@@ -1,4 +1,4 @@
-package com.green.pipeline_dummy.application.community_forum.model;
+package com.green.pipeline_dummy.application.community.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @ToString
 @AllArgsConstructor
 public class ForumBookmarkDummyDto {
-    private Long forumId;     // forum_id
-    private Long userId;      // user_id
-    private LocalDateTime createdAt;  // created_at
+    private Long forumId;
+    private Long userId;
+    private LocalDateTime createdAt;
 }

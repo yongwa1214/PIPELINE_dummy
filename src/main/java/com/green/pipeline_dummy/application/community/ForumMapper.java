@@ -1,9 +1,9 @@
-package com.green.pipeline_dummy.application.community_forum;
+package com.green.pipeline_dummy.application.community;
 
-import com.green.pipeline_dummy.application.community_forum.model.ForumBookmarkDummyDto;
-import com.green.pipeline_dummy.application.community_forum.model.ForumCommentDummyDto;
-import com.green.pipeline_dummy.application.community_forum.model.ForumDummyDto;
-import com.green.pipeline_dummy.application.community_forum.model.ForumMediaDummyDto;
+import com.green.pipeline_dummy.application.community.model.ForumBookmarkDummyDto;
+import com.green.pipeline_dummy.application.community.model.ForumCommentDummyDto;
+import com.green.pipeline_dummy.application.community.model.ForumDummyDto;
+import com.green.pipeline_dummy.application.community.model.ForumMediaDummyDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

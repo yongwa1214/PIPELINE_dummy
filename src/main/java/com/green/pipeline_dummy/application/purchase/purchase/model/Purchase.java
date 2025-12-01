@@ -13,13 +13,13 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Purchase {
     Long purchaseId;
-    Long gm_profileId;
+    Long gmProfileId;
     Long methodId;
     Long currencyCode;
-    BigDecimal price;
+    BigDecimal discountPrice;
     BigDecimal walletUsed;
     BigDecimal paidPrice;
     LocalDateTime purchaseDate;
-    String pg_tid;
+    String pgTid;
 
 }

@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 public class PurchaseItemDto {
-    Long purchaseUId;
+    Long purchaseId;
     Long gameId;
     Long discountId;
     BigDecimal basePrice;

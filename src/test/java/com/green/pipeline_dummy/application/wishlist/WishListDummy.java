@@ -8,18 +8,24 @@ import com.green.pipeline_dummy.application.cart.model.WishListReq;
 import com.green.pipeline_dummy.application.game.GameMapper;
 import com.green.pipeline_dummy.application.game.model.GameIdRes;
 import com.green.pipeline_dummy.model.RandomDate;
+import net.datafaker.Faker;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.test.annotation.Rollback;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.ThreadLocalRandom;
+
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class WishListDummy extends MbDummy {
     @Autowired GameMapper gameMapper;
     @Autowired WishListMapper wishListMapper;
+
 
     @Test
     @Rollback(false)

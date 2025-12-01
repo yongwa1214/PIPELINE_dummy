@@ -38,14 +38,14 @@
         ,is_deleted = #{isDeleted}
     </insert>
 
-    <insert id="saveWorkshopComment">
+    <insert id="saveWorkshopBookmark">
         INSERT IGNORE INTO community_workshop_bookmark
         set workshop_id = #{workshopId}
         ,user_id = #{userId}
         ,created_at = #{createdAt}
     </insert>
 
-    <insert id="saveWorkshopComment">
+    <insert id="saveWorkshopFollow">
         INSERT IGNORE INTO community_workshop_follow
         set workshop_id = #{workshopId}
         ,user_id = #{userId}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.pipeline_dummy.application.discount.DiscountMapper">
+    <insert id="saveDiscount">
+        INSERT IGNORE INTO discount
+        set event_id = #{eventId}
+        ,game_id = #{gameId}
+        ,discount_rate = #{discountRate}
+    </insert>
+
+    <select id="findEventIds">
+        SELECT event_id
+        FROM event
+    </select>
+</mapper>

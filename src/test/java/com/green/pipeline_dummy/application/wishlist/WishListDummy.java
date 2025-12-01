@@ -24,7 +24,7 @@ public class WishListDummy extends MbDummy {
     @Test
     @Rollback(false)
     void saveWishList(){
-        final int SIZE = 2;
+        final int SIZE = 100_000;
         List<GameIdRes> gameList = gameMapper.findByStatus();
         for(int i = 0 ; i < SIZE; i++ ){
             int num = ThreadLocalRandom.current().nextInt(gameList.size());

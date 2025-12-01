@@ -40,6 +40,15 @@
         ,created_at = #{createdAt}
     </insert>
 
+    <insert id="saveForumMedia">
+        INSERT IGNORE INTO community_forum_media
+        SET forum_id = #{forumId}
+        ,forum_media = #{forumMedia}
+        ,forum_media_type = #{forumMediaType}
+        ,created_at = #{createdAt}
+        ,updated_at = #{updatedAt}
+    </insert>
+
     <select id="findGameIds">
         SELECT game_id
         FROM game

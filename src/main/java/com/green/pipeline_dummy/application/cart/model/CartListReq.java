@@ -9,8 +9,9 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @Getter
-public class WishListReq {
+public class CartListReq {
     Long gameId;
     Long gmProfileId;
+    String purchaseType;
     LocalDateTime createdAt;
 }

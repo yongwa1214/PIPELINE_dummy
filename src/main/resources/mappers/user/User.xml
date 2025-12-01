@@ -6,4 +6,16 @@
         SELECT dp_profile_id
         FROM developer_profile
     </select>
+
+    <select id="findCountryAndCurrency">
+        SELECT cc.currency_code, cc.country_code
+        FROM user u
+        JOIN gamer_profile gp
+        ON u.user_id = gp.user_id
+        JOIN country_currency cc
+        ON u.country_code = cc.country_code
+        WHERE gp.gm_profile_id = #{userId} AND cc.is_primary = 1
+    </select>
+
+
 </mapper>

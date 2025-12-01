@@ -1,0 +1,22 @@
+package com.green.pipeline_dummy.application.purchase.purchase_item.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+@Getter
+@Builder(toBuilder = true)
+@AllArgsConstructor
+public class PurchaseItemDto {
+    Long purchaseId;
+    Long gameId;
+    Long discountId;
+    BigDecimal basePrice;
+    BigDecimal finalPrice;
+    String purchaseType;
+    String itemStatus;
+    LocalDateTime createdAt;
+}

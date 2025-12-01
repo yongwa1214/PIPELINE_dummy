@@ -28,7 +28,7 @@
         FROM regional_price
         WHERE country_code = #{countryCode} AND game_id IN
         <foreach collection="gameList" item="id" open="(" separator="," close=")">
-            #{id}
+            #{id.gameId}
         </foreach>
     </select>
 
@@ -48,7 +48,7 @@
         )
         WHERE g.game_id IN
         <foreach collection="gameList" item="id" open="(" separator="," close=")">
-            #{id}
+            #{id.gameId}
         </foreach>;
     </select>
 </mapper>

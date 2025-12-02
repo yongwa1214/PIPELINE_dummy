@@ -87,7 +87,7 @@ public class ForumDummy extends MbDummy {
     @Test
     @Rollback(value = false)
     void saveForumComment() {
-        final int SIZE = 3_000_000;
+        final int SIZE = 2_000_000;
 
         List<Long> userIds = communityMapper.findUserIds(); // '모든' 유저
         List<Long> forumIds = communityMapper.findForumIds();

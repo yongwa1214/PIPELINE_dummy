@@ -3,7 +3,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.green.pipeline_dummy.application.library.LibraryMapper">
 
-    <select id="findMissingBaseGames" resultType="long" parameterType="com.example.GameCheckDto">
+    <select id="findMissingBaseGames">
         SELECT g.base_game_id
         FROM game g
         LEFT JOIN library l

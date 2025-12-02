@@ -123,7 +123,7 @@ public class WorkshopDummy extends MbDummy {
     @Test
     @Rollback(false)
     void saveWorkshopComment() {
-        final int SIZE = 3_000_000;
+        final int SIZE = 2_000_000;
 
         List<Long> workshopIds = workshopMapper.findWorkshopIds();
         List<Long> userIds = forumMapper.findUserIds();

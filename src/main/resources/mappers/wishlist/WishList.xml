@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.green.pipeline_dummy.application.friend.FriendMapper">
+<mapper namespace="com.green.pipeline_dummy.application.cart.WishListMapper">
     <insert id="saveWishList">
-        INSERT INTO IGNORE wishlist
+        INSERT IGNORE INTO wishlist
         SET game_id = #{gameId}
             , gm_profile_id = #{gmProfileId}
-            , create_at = #{createAt}
+            , created_at = #{createdAt}
+    </insert>
+    <insert id="saveCart">
+        INSERT IGNORE INTO cart
+        SET game_id = #{gameId}
+        , gm_profile_id = #{gmProfileId}
+        ,purchase_type = #{purchaseType}
+        , created_at = #{createdAt}
     </insert>
 </mapper>

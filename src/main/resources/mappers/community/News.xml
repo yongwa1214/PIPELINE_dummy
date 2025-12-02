@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.pipeline_dummy.application.community_news.NewsMapper">
+    <insert id="saveNews">
+        INSERT IGNORE INTO community_news
+        SET dp_profile_id = #{dpProfileId}
+        ,game_id = #{gameId}
+        ,news_title = #{newsTitle}
+        ,news_contents = #{newsContents}
+        ,news_patch_version = #{newsPatchVersion}
+        ,created_at = #{createdAt}
+        ,updated_at = #{updatedAt}
+        ,is_deleted = #{isDeleted}
+    </insert>
+
+    <insert id="saveNewsComment">
+        INSERT IGNORE INTO community_news_comment
+        SET user_id = #{userId}
+        ,news_id = #{newsId}
+        ,news_comment_contents = #{newsCommentContents}
+        ,created_at = #{createdAt}
+        ,updated_at = #{updatedAt}
+        ,is_deleted = #{isDeleted}
+    </insert>
+
+    <insert id="saveNewsMedia">
+        INSERT IGNORE INTO community_news_media
+        SET news_id = #{newsId}
+        ,news_media = #{newsMedia}
+        ,news_media_type = #{newsMediaType}
+        ,created_at = #{createdAt}
+        ,updated_at = #{updatedAt}
+    </insert>
+
+    <select id="findNewsIds">
+        SELECT news_id
+        FROM community_news
+    </select>
+
+</mapper>

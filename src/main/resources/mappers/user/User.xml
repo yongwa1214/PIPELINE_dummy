@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.pipeline_dummy.application.user.UserMapper">
+    <select id="findDeveloperIds">
+        SELECT dp_profile_id
+        FROM developer_profile
+    </select>
+
+    <select id="findCountryAndCurrency">
+        SELECT cc.currency_code, cc.country_code
+        FROM user u
+        JOIN gamer_profile gp
+        ON u.user_id = gp.user_id
+        JOIN country_currency cc
+        ON u.country_code = cc.country_code
+        WHERE gp.gm_profile_id = #{userId} AND cc.is_primary = 1
+    </select>
+
+
+</mapper>

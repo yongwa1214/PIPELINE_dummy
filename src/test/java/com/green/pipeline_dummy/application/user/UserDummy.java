@@ -49,10 +49,19 @@ public class UserDummy extends JpaDummy {
     @Test
     @Rollback(false)
     void saveGM(){
-        final int SIZE = 200_000;
+        final int SIZE = 100_000;
         CommonCode role = commonCodeRepository.findById("RO-GM").get();
         for(int i =0; i<SIZE; i++){
-            userRepository.save(saveUserInfo(role)) ;
+           User user = userRepository.save(saveUserInfo(role)) ;
+            GamerProfile gp = GamerProfile.builder()
+                    .user(user)
+                    .gmNickname(user.getUserName())
+                    .avatar(createName(50)+".png")
+                    .profileBanner(createName(50)+".jpg")
+                    .lastLogin(randomDateFuture())
+                    .wallet(randomWallet(50000))
+                    .build();
+            gamerProfileRepository.save(gp);
         }
         userRepository.flush();
     }

@@ -16,4 +16,6 @@
         set from_user = #{fromUser}
             , to_user = #{toUser}
     </insert>
+
+
 </mapper>

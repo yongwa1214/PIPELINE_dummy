@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.pipeline_dummy.application.library.LibraryMapper">
+
+    <select id="findMissingBaseGames" resultType="long" parameterType="com.example.GameCheckDto">
+        SELECT g.base_game_id
+        FROM game g
+        LEFT JOIN library l
+        ON g.base_game_id = l.game_id
+        WHERE g.game_id IN
+        <foreach collection="res" item="id" open="(" separator="," close=")">
+            #{id.gameId}
+        </foreach>
+        AND l.game_id IS NULL
+        AND g.base_game_id IS NOT NULL
+    </select>
+
+</mapper>
+
+

@@ -163,7 +163,7 @@ public class WorkshopDummy extends MbDummy {
     @Test
     @Rollback(value = false)
     void saveWorkshopBookmark() {
-        final int SIZE = 100_000;
+        final int SIZE = 2_000_000;
         List<Long> userIds = forumMapper.findUserIds();
         List<Long> workshopIds = workshopMapper.findWorkshopIds();
         Set<String> existing = new HashSet<>();
@@ -171,7 +171,7 @@ public class WorkshopDummy extends MbDummy {
         for (int i = 0; i < SIZE; i++) {
             Long userId = userIds.get(faker.number().numberBetween(0, userIds.size()));
             Long workshopId = workshopIds.get(faker.number().numberBetween(0, workshopIds.size()));
-            String key = userId + "-" + workshopIds;
+            String key = userId + "-" + workshopId;
 
             if (existing.contains(key)) continue; // 중복 방지
             existing.add(key);
@@ -199,15 +199,15 @@ public class WorkshopDummy extends MbDummy {
     @Test
     @Rollback(value = false)
     void saveWorkshopFollow() {
-        final int SIZE = 100_000;
-        List<Long> userIds = forumMapper.findUserIds();
+        final int SIZE = 2_000_000;
+        List<Long> gamerIds = forumMapper.findGamerIds();
         List<Long> workshopIds = workshopMapper.findWorkshopIds();
         Set<String> existing = new HashSet<>();
 
         for (int i = 0; i < SIZE; i++) {
-            Long userId = userIds.get(faker.number().numberBetween(0, userIds.size()));
+            Long gamerId = gamerIds.get(faker.number().numberBetween(0, gamerIds.size()));
             Long workshopId = workshopIds.get(faker.number().numberBetween(0, workshopIds.size()));
-            String key = userId + "-" + workshopIds;
+            String key = gamerId + "-" + workshopId;
 
             if (existing.contains(key)) continue; // 중복 방지
             existing.add(key);
@@ -222,7 +222,7 @@ public class WorkshopDummy extends MbDummy {
             LocalDateTime createdAt = CommonMethod.randomDateFuture(create);
 
             WorkshopFollowDummyDto dto = WorkshopFollowDummyDto.builder()
-                    .userId(userId)
+                    .gmProfileId(gamerId)
                     .workshopId(workshopId)
                     .createdAt(createdAt)
                     .build();

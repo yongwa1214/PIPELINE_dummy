@@ -12,5 +12,5 @@ import java.util.List;
 @AllArgsConstructor
 public class DiscountDto {
     LocalDateTime date;
-    List<GameIdRes> gameList;
+    List<Long> gameList;
 }

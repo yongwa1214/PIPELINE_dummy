@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @ToString
 @AllArgsConstructor
 public class NewsMediaDummyDto {
-    private Long newId;
+    private Long newsId;
     private String newsMedia;
     private String newsMediaType;
     private LocalDateTime createdAt;

@@ -130,7 +130,7 @@ public class ForumDummy extends MbDummy {
     @Test
     @Rollback(value = false)
     void saveForumMedia() {
-        final int SIZE = 100_000;
+        final int SIZE = 500_000;
 
         List<Long> forumIds = communityMapper.findForumIds();
         for (int i = 0; i < SIZE; i++) {
@@ -168,7 +168,7 @@ public class ForumDummy extends MbDummy {
     @Test
     @Rollback(value = false)
     void saveForumBookmark() {
-        final int SIZE = 100_000;
+        final int SIZE = 500_000;
 
         List<Long> userIds = communityMapper.findUserIds(); // 모든 유저
         List<Long> forumIds = communityMapper.findForumIds(); // 모든 포럼

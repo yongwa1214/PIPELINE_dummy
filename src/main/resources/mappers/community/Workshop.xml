@@ -23,7 +23,6 @@
         set workshop_id = #{workshopId}
         ,workshop_media = #{workshopMedia}
         ,workshop_media_type = #{workshopMediaType}
-        ,game_id = #{gameId}
         ,created_at = #{createdAt}
         ,updated_at = #{updatedAt}
     </insert>
@@ -48,7 +47,7 @@
     <insert id="saveWorkshopFollow">
         INSERT IGNORE INTO community_workshop_follow
         set workshop_id = #{workshopId}
-        ,user_id = #{userId}
+        ,gm_profile_id = #{gmProfileId}
         ,created_at = #{createdAt}
     </insert>
 

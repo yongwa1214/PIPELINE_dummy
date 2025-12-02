@@ -9,10 +9,9 @@ import java.time.LocalDateTime;
 
 @Getter
 @Builder
-@ToString
 @AllArgsConstructor
 public class WorkshopFollowDummyDto {
     private Long workshopId;
-    private Long userId;
+    private Long gmProfileId;
     private LocalDateTime createdAt;
 }

@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 
 @Getter
 @Builder
-@ToString
 @AllArgsConstructor
 public class WorkshopBookmarkDummyDto {
     private Long workshopId;

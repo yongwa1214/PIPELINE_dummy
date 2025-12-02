@@ -37,8 +37,9 @@ public class PurchaseDummy extends MbDummy {
     @Rollback(value = false)
     @Transactional
     void savePurchaseProcessUntilProcessDetail(){
-        final int SIZE = 1;
-        List<GameIdRes> gameList = gameMapper.findByStatus();
+        final int SIZE = 100_000;
+//        List<GameIdRes> gameList = gameMapper.findByStatus(); // 활성화된게임
+          List<GameIdRes> gameList = gameMapper.findByStatusAndGameType(); // 활성화된 본게임들
         for(int i =0; i < SIZE; i++){
             //1. 유저의 소속국가와 통화 가져오기
             long gm_id = 760_836L + (long)(Math.random() * 1_000_000);
@@ -52,7 +53,7 @@ public class PurchaseDummy extends MbDummy {
             //3. 랜덤한 게임 리스트
             List<Long> randomGameList = new ArrayList<>();
             List<GameIdRes> copyList = new ArrayList<>(gameList); // 카피(뽑은 요소 제거하려고)
-            int count = 1 + (int)(Math.random() * 4);
+            int count = 1 + (int)(Math.random() * 1);
             for (int j = 0; j < count; j++) {
                 int index = (int)(Math.random() * copyList.size());
                 randomGameList.add(copyList.get(index).getGameId());
@@ -87,6 +88,7 @@ public class PurchaseDummy extends MbDummy {
                     .gameList(randomGameList)
                     .build();
             List<DiscountRes> discountList = gameMapper.findDiscount(discountDto);
+            int idf =0;
 
             //전체 할인 금액
             BigDecimal totalDiscount = BigDecimal.ZERO;
@@ -138,9 +140,9 @@ public class PurchaseDummy extends MbDummy {
                 PurchaseItemDto item = PurchaseItemDto.builder()
                         .gameId(gameId)
                         .basePrice(basePrice)
-                        .discountId(discount.getDiscountId())
+                        .discountId(discount.getDiscountId() != null ? discount.getDiscountId() : null)
                         .finalPrice(finalPrice)
-                        .purchaseType("ST-OWN")
+                        .purchaseType("ST-GIFT")
                         .itemStatus("ST-ACPT")
 
                         .build();

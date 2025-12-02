@@ -16,6 +16,11 @@
         AND g.base_game_id IS NOT NULL
     </select>
 
+    <insert id="addLibrary">
+        INSERT INTO library
+
+    </insert>
+
 </mapper>
 
 

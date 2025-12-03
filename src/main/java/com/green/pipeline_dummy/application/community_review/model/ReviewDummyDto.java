@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @ToString
 public class ReviewDummyDto {
     private Long gmProfileId;
-    private Long gameId;
+    private Long libraryId;
     private String reviewContents;
     private int reviewLikeCount;
     private int recommend;

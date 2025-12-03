@@ -2,8 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.green.pipeline_dummy.application.purchase.purchase_item.PurchaseItemMapper">
+    <insert id="saveDetail">
+        INSERT INTO purchase_item
+        (purchase_id, game_id, discount_id, base_price, final_price, purchase_type, item_status, updated_at)
+        VALUES
+        <foreach collection="purchaseItem" item="item" separator=",">
+            (
+            #{purchaseId},
+            #{item.gameId},
+            #{item.discountId},
+            #{item.basePrice},
+            #{item.finalPrice},
+            #{item.purchaseType},
+            #{item.itemStatus},
+            #{updatedAt}
+            )
+        </foreach>
+    </insert>
 
-
+    <select id="findSTOWN">
+        SELECT pi.item_id, pi.updated_at, p.gm_profile_id
+        FROM purchase_item pi
+        JOIN purchase p
+        ON p.purchase_id = pi.purchase_id
+        WHERE purchase_type = 'ST-OWN'
+        AND item_status = 'ST-ACPT'
+        ORDER BY pi.item_id
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
 
 
 </mapper>

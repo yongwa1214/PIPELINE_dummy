@@ -16,6 +16,7 @@
         AND g.base_game_id IS NOT NULL
     </select>
 
+    <select id="find"></select>
 </mapper>
 
 

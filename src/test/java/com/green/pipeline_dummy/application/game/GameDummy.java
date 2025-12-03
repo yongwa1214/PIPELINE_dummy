@@ -12,8 +12,10 @@ import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.annotation.Rollback;
 
 import java.time.LocalDate;
@@ -21,7 +23,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 @SpringBootTest
-@ComponentScan(basePackages = "com.green.pipeline_dummy")
+@Import(GameSessionLogDummyConfig.class)  // ⭐ test 빈 가져오기
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class GameDummy extends JpaDummy {
 
@@ -195,5 +197,14 @@ public class GameDummy extends JpaDummy {
     @Rollback(false)
     void saveGameChallenges() {
         gameChallengeDummy.generateChallenges();
+    }
+
+    @Autowired
+    private GameSessionLogDummy gameSessionLogDummy;
+
+    @Test
+    @Rollback(false)
+    void saveGameSessionLogs() {
+        gameSessionLogDummy.saveGameSessionLogs();
     }
 }

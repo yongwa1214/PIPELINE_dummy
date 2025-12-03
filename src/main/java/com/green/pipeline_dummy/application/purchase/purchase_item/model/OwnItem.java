@@ -10,5 +10,6 @@ import java.time.LocalDateTime;
 public class OwnItem {
     Long gmProfileId;
     LocalDateTime updatedAt;
+    Long gameId;
     Long itemId;
 }

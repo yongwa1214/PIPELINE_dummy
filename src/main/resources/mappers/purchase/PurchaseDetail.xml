@@ -31,5 +31,25 @@
         LIMIT #{limit} OFFSET #{offset}
     </select>
 
+    <select id ="findGift">
+        SELECT pi.item_id, pi.updated_at, p.gm_profile_id, pi.game_id
+        FROM purchase_item pi
+        JOIN purchase p
+        ON p.purchase_id = pi.purchase_id
+        WHERE purchase_type = 'ST-GIFT'
+        AND item_status = 'ST-ACPT'
+        ORDER BY pi.item_id
+    </select>
+
+    <select id ="findOwnGame">
+        SELECT COUNT(*)
+        FROM purchase_item PI
+        JOIN purchase p
+        ON p.purchase_id = PI.purchase_id
+        WHERE p.gm_profile_id = #{gmProfileId} AND PI.game_id = #{gameId}
+    </select>
+
+
+
 
 </mapper>

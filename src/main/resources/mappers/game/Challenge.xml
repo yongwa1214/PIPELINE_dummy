@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.pipeline_dummy.application.game.game_challenge.GameChallengeMapper">
+    <insert id="saveUserChallenge">
+        INSERT IGNORE INTO user_challenge
+        SET library_id = #{libraryId}
+        , challenge_id = #{challengeId}
+        , challenged_at = #{challengedAt}
+    </insert>
+
+    <select id="findChallengeIds">
+        SELECT challenge_id
+        FROM game_challenge
+        WHERE game_id = #{gameId}
+    </select>
+</mapper>

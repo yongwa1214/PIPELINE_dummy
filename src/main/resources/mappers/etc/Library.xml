@@ -31,8 +31,13 @@
                 #{item.gotAt}
             )
         </foreach>
-
     </insert>
+
+    <select id="findLibraryIds">
+        SELECT library_id
+        FROM library
+        WHERE owner_id = #{ownerId}
+    </select>
 
 </mapper>
 

@@ -10,4 +10,5 @@ import java.util.List;
 public interface LibraryMapper {
     List<Long> findMissingBaseGames(List<Long> res);
     void addLibrary(List<LibraryDto> res);
+    List<Long> findLibraryIds(Long ownerId);
 }

@@ -49,10 +49,10 @@ public class GameDummy extends JpaDummy {
     void saveGames() {
 
         // ★ 부모(시리즈 루트) 게임 먼저 생성
-        parentGameList = createParentGames(1_000);
+        parentGameList = createParentGames(10_000);
 
         // ★ FK로 부모 연결된 자식 게임 생성
-        createChildGames(99_000);
+        createChildGames(20_000);
     }
 
 

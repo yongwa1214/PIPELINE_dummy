@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.green.pipeline_dummy.application.game.session.GameSessionLogMapper">
+
+    <insert id="insertGameSession">
+        INSERT INTO game_session_log
+        (library_id, start_time, end_time)
+        VALUES
+        (#{libraryId}, #{startTime}, #{endTime})
+    </insert>
+
+    <!-- 유저의 라이브러리 ID만 가져오면 된다 -->
+    <select id="getLibrariesForSession">
+        SELECT
+        library_id AS libraryId,
+        item_id AS itemId,
+        owner_id AS ownerId
+        FROM library
+    </select>
+
+</mapper>

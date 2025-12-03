@@ -12,7 +12,7 @@ public class LibraryDto {
     Long itemId;
     String libStatus;
     int playtime; //초단위
-    LocalDateTime lastPlay;
+    String lastPlay;
     int playNow;
     LocalDateTime gotAt;
 }

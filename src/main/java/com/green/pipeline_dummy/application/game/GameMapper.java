@@ -13,4 +13,5 @@ public interface GameMapper {
     List<Long> findAllGameIds();
     List<PriceIdRes> findGamePrice(PriceDto dto);
     List<DiscountRes> findDiscount(DiscountDto dto);
+    List<GameIdRes> findByStatusAndGameType();
 }

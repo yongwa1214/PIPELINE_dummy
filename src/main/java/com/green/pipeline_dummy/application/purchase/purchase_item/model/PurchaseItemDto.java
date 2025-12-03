@@ -11,12 +11,10 @@ import java.time.LocalDateTime;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 public class PurchaseItemDto {
-    Long purchaseId;
     Long gameId;
     Long discountId;
     BigDecimal basePrice;
     BigDecimal finalPrice;
     String purchaseType;
     String itemStatus;
-    LocalDateTime createdAt;
 }

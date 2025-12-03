@@ -8,6 +8,13 @@
         FROM game
         WHERE STATUS = 'ST-ACT'
     </select>
+<!-- 활성화 된 본게임-->
+    <select id="findByStatusAndGameType">
+        SELECT game_id
+        FROM game
+        WHERE STATUS = 'ST-ACT' AND base_game_id IS NULL
+
+    </select>
 
     <select id="findGameIds">
         SELECT game_id
@@ -26,16 +33,15 @@
         FROM regional_price
         WHERE country_code = #{countryCode} AND game_id IN
         <foreach collection="gameList" item="id" open="(" separator="," close=")">
-            #{id.gameId}
+            #{id}
         </foreach>
     </select>
 
     <!-- 할인율 및 할인 아이디 들고오기   -->
     <select id="findDiscount">
         SELECT
-        g.game_id,
-        COALESCE(d.discount_rate, 0) AS discount_rate,
-        d.discount_id
+        d.discount_id,
+        COALESCE(d.discount_rate, 0) AS discount_rate
         FROM game g
         LEFT JOIN discount d
         ON g.game_id = d.game_id
@@ -46,7 +52,7 @@
         )
         WHERE g.game_id IN
         <foreach collection="gameList" item="id" open="(" separator="," close=")">
-            #{id.gameId}
+            #{id}
         </foreach>;
     </select>
 </mapper>

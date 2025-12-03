@@ -22,13 +22,13 @@
         VALUES
         <foreach collection="res" item="item" separator=",">
             (
-                owner_id = #{item.ownerId},
-                item_id = #{item.itemId},
-                lib_status = #{libStatus},
-                playtime = #{playtime},
-                last_play = #{lastPlay},
-                play_now = =#{playNow},
-                got_at = #{gotAt}
+                #{item.ownerId},
+                #{item.itemId},
+                #{item.libStatus},
+                #{item.playtime},
+                #{item.lastPlay},
+                #{item.playNow},
+                #{item.gotAt}
             )
         </foreach>
 

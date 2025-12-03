@@ -21,11 +21,14 @@
     </insert>
 
     <select id="findSTOWN">
-        SELEct item_id, updatedAt, gm_profile_id
-        from purchase_item pi
+        SELECT pi.item_id, pi.updated_at, p.gm_profile_id
+        FROM purchase_item pi
         JOIN purchase p
-           ON p.purchase_id = pi.purchase_id
-        WHERE purchase_type = 'ST-OWN' AND item_status = 'ST-ACPT'
+        ON p.purchase_id = pi.purchase_id
+        WHERE purchase_type = 'ST-OWN'
+        AND item_status = 'ST-ACPT'
+        ORDER BY pi.item_id
+        LIMIT #{limit} OFFSET #{offset}
     </select>
 
 

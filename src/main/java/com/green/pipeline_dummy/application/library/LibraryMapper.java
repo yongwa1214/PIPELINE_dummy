@@ -9,5 +9,5 @@ import java.util.List;
 @Mapper
 public interface LibraryMapper {
     List<Long> findMissingBaseGames(List<Long> res);
-    void addLibrary(LibraryDto res);
+    void addLibrary(List<LibraryDto> res);
 }

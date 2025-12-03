@@ -17,7 +17,7 @@
     <insert id="saveNewsComment">
         INSERT IGNORE INTO community_news_comment
         SET user_id = #{userId}
-        ,game_id = #{newsId}
+        ,news_id = #{newsId}
         ,news_comment_contents = #{newsCommentContents}
         ,created_at = #{createdAt}
         ,updated_at = #{updatedAt}

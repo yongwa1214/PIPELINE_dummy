@@ -84,7 +84,7 @@ public class NewsDummy extends MbDummy {
     @Test
     @Rollback(false)
     void saveNewsMedia() {
-        final int SIZE = 2_000_000;
+        final int SIZE = 1_000_000;
 
         List<Long> newsIds = newsMapper.findNewsIds();
         for (int i = 0; i < SIZE; i++) {
@@ -110,7 +110,7 @@ public class NewsDummy extends MbDummy {
             String mediaUrl = faker.internet().image();
 
             NewsMediaDummyDto dto = NewsMediaDummyDto.builder()
-                    .newId(newsIds.get(faker.number().numberBetween(0, newsIds.size())))
+                    .newsId(newsIds.get(faker.number().numberBetween(0, newsIds.size())))
                     .newsMedia(mediaUrl)
                     .newsMediaType(faker.options().option("video","image","gif"))
                     .createdAt(createdAt)
@@ -125,7 +125,7 @@ public class NewsDummy extends MbDummy {
     @Test
     @Rollback(false)
     void saveNewsComment() {
-        final int SIZE = 3_000_000;
+        final int SIZE = 2_000_000;
 
         List<Long> newsIds = newsMapper.findNewsIds();
         List<Long> userIds = forumMapper.findUserIds();

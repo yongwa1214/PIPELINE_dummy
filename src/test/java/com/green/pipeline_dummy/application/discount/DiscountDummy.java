@@ -1,7 +1,6 @@
 package com.green.pipeline_dummy.application.discount;
 
 import com.green.pipeline_dummy.MbDummy;
-import com.green.pipeline_dummy.application.community.ForumMapper;
 import com.green.pipeline_dummy.application.discount.model.DiscountDummyDto;
 import com.green.pipeline_dummy.application.game.GameMapper;
 import net.datafaker.Faker;

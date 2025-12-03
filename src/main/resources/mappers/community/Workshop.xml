@@ -23,7 +23,6 @@
         set workshop_id = #{workshopId}
         ,workshop_media = #{workshopMedia}
         ,workshop_media_type = #{workshopMediaType}
-        ,game_id = #{gameId}
         ,created_at = #{createdAt}
         ,updated_at = #{updatedAt}
     </insert>
@@ -38,17 +37,17 @@
         ,is_deleted = #{isDeleted}
     </insert>
 
-    <insert id="saveWorkshopComment">
+    <insert id="saveWorkshopBookmark">
         INSERT IGNORE INTO community_workshop_bookmark
         set workshop_id = #{workshopId}
         ,user_id = #{userId}
         ,created_at = #{createdAt}
     </insert>
 
-    <insert id="saveWorkshopComment">
+    <insert id="saveWorkshopFollow">
         INSERT IGNORE INTO community_workshop_follow
         set workshop_id = #{workshopId}
-        ,user_id = #{userId}
+        ,gm_profile_id = #{gmProfileId}
         ,created_at = #{createdAt}
     </insert>
 

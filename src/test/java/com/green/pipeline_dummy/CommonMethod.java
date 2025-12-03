@@ -1,14 +1,19 @@
 package com.green.pipeline_dummy;
 
 import com.green.pipeline_dummy.model.RandomDate;
+import net.datafaker.Faker;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Locale;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class CommonMethod {
+    public static Faker faker = new Faker(new Locale("en")); // 영어
+
     public static LocalDateTime randomDateFuture(RandomDate value) {
         //LocalDate startDate = LocalDate.of(2020, 2, 1);
         LocalDate startDate = LocalDate.of(value.getStartYear(), value.getStartMonth(), value.getStartDate());
@@ -45,5 +50,18 @@ public class CommonMethod {
             }
         }
         return userId.toString();
+    }
+
+    public static BigDecimal walletCurrency(String currency) {
+
+        switch (currency) {
+            case "KRW": return BigDecimal.valueOf(faker.number().numberBetween(0, 10000));
+            case "JPY": return BigDecimal.valueOf(faker.number().numberBetween(0, 1000));
+            case "USD": return BigDecimal.valueOf(faker.number().numberBetween(0, 5));
+            case "EUR": return BigDecimal.valueOf(faker.number().numberBetween(0, 5));
+            case "GBP": return BigDecimal.valueOf(faker.number().numberBetween(0, 4));
+            default:
+                return BigDecimal.valueOf(faker.number().numberBetween(0, 5));
+        }
     }
 }

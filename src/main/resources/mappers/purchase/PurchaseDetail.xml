@@ -20,6 +20,13 @@
         </foreach>
     </insert>
 
+    <select id="findSTOWN">
+        SELEct item_id, updatedAt, gm_profile_id
+        from purchase_item pi
+        JOIN purchase p
+           ON p.purchase_id = pi.purchase_id
+        WHERE purchase_type = 'ST-OWN' AND item_status = 'ST-ACPT'
+    </select>
 
 
 </mapper>

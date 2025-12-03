@@ -18,6 +18,19 @@
 
     <insert id="addLibrary">
         INSERT INTO library
+        (owner_id, item_id, lib_status, playtime, last_play, play_now, got_at)
+        VALUES
+        <foreach collection="res" item="item" separator=",">
+            (
+                owner_id = #{item.ownerId},
+                item_id = #{item.itemId},
+                lib_status = #{libStatus},
+                playtime = #{playtime},
+                last_play = #{lastPlay},
+                play_now = =#{playNow},
+                got_at = #{gotAt}
+            )
+        </foreach>
 
     </insert>
 

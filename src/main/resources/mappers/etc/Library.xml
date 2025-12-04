@@ -16,6 +16,14 @@
         AND g.base_game_id IS NOT NULL
     </select>
 
+    <select id="findOwnGame">
+        SELECT game_id
+        FROM library l
+        JOIN purchase_item PI
+        ON l.item_id = PI.item_id
+        WHERE l.owner_id = #{userId} AND lib_status != 'ST-RFND'
+    </select>
+
     <insert id="addLibrary">
         INSERT INTO library
         (owner_id, item_id, lib_status, playtime, last_play, play_now, got_at)
@@ -37,6 +45,11 @@
         SELECT library_id
         FROM library
         WHERE owner_id = #{ownerId}
+    </select>
+
+    <select id="findLibrary">
+        SELECT library_id
+        FROM library
     </select>
 
 </mapper>

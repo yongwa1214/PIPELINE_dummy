@@ -18,4 +18,6 @@ public interface PurchaseItemMapper {
     List<OwnItem>findGift();
     int findOwnGame(@Param("gmProfileId") Long gmProfileId,
                           @Param("gameId") Long gameId);
+
+    long findGameId(long libraryId);
 }

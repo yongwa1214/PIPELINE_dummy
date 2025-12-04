@@ -42,21 +42,33 @@ public class PurchaseDummy extends MbDummy {
           List<GameIdRes> gameList = gameMapper.findByStatusAndGameType(); // 활성화된 본게임들
         for(int i =0; i < SIZE; i++){
             //1. 유저의 소속국가와 통화 가져오기
-            long gm_id = 760_836L + (long)(Math.random() * 1_000_000);
+            long gm_id = 760_836L + (long)(Math.random() * 10_000);
             UserInfo userInfo = userMapper.findCountryAndCurrency(gm_id); // 유저의 국가 코드와 통화코드가 있음
             //2. 유저가 사용가능한 결제 수단 목록
             List<PurchaseMethod> purchaseMethodList = purchaseMapper.findPurchaseMethod(userInfo.getCountryCode());
             int idx = (int) (Math.random() * purchaseMethodList.size());
             PurchaseMethod purchaseMethod = purchaseMethodList.get(idx);
-
+            //2-1. 유저의 게임 목록
+            List<Long> userGameList = libraryMapper.findOwnGame(gm_id);
 
             //3. 랜덤한 게임 리스트
             List<Long> randomGameList = new ArrayList<>();
             List<GameIdRes> copyList = new ArrayList<>(gameList); // 카피(뽑은 요소 제거하려고)
-            int count = 1 + (int)(Math.random() * 1);
+            int count = 1 + (int)(Math.random() * 7);
             for (int j = 0; j < count; j++) {
+                if (copyList.isEmpty()) break;
+
                 int index = (int)(Math.random() * copyList.size());
-                randomGameList.add(copyList.get(index).getGameId());
+                long gameId = copyList.get(index).getGameId();
+
+                // ⭐ 이미 유저가 가지고 있으면 PASS
+                if (userGameList.contains(gameId)) {
+                    copyList.remove(index);
+                    j--; // 다시 뽑기 위해 인덱스 유지
+                    continue;
+                }
+
+                randomGameList.add(gameId);
                 copyList.remove(index);
             }
 
@@ -124,11 +136,6 @@ public class PurchaseDummy extends MbDummy {
 
             List<PurchaseItemDto> purchaseItemList = new ArrayList<>();
 
-            //리스트 사이즈
-            int size1 = randomGameList.size();
-            int size2 = priceList.size();
-            int size3 = discountList.size();
-
             for (int k = 0; k < randomGameList.size(); k++) {
                 Long gameId = randomGameList.get(k);
                 BigDecimal basePrice = priceList.get(k).getPrice_amount();
@@ -142,9 +149,8 @@ public class PurchaseDummy extends MbDummy {
                         .basePrice(basePrice)
                         .discountId(discount.getDiscountId() != null ? discount.getDiscountId() : null)
                         .finalPrice(finalPrice)
-                        .purchaseType("ST-GIFT")
+                        .purchaseType("ST-OWN")
                         .itemStatus("ST-ACPT")
-
                         .build();
 
                 purchaseItemList.add(item);

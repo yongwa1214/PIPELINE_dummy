@@ -11,4 +11,6 @@ public interface LibraryMapper {
     List<Long> findMissingBaseGames(List<Long> res);
     void addLibrary(List<LibraryDto> res);
     List<Long> findLibraryIds(Long ownerId);
+    List<Long> findLibrary();
+    List<Long> findOwnGame (long userId);
 }

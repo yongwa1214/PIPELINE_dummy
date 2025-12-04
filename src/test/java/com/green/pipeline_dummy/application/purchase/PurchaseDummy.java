@@ -42,7 +42,7 @@ public class PurchaseDummy extends MbDummy {
           List<GameIdRes> gameList = gameMapper.findByStatusAndGameType(); // 활성화된 본게임들
         for(int i =0; i < SIZE; i++){
             //1. 유저의 소속국가와 통화 가져오기
-            long gm_id = 760_836L + (long)(Math.random() * 10_000);
+            long gm_id = 770_836L + (long)(Math.random() * 100_000);
             UserInfo userInfo = userMapper.findCountryAndCurrency(gm_id); // 유저의 국가 코드와 통화코드가 있음
             //2. 유저가 사용가능한 결제 수단 목록
             List<PurchaseMethod> purchaseMethodList = purchaseMapper.findPurchaseMethod(userInfo.getCountryCode());
@@ -54,7 +54,7 @@ public class PurchaseDummy extends MbDummy {
             //3. 랜덤한 게임 리스트
             List<Long> randomGameList = new ArrayList<>();
             List<GameIdRes> copyList = new ArrayList<>(gameList); // 카피(뽑은 요소 제거하려고)
-            int count = 1 + (int)(Math.random() * 7);
+            int count = 3 + (int)(Math.random() * 7);
             for (int j = 0; j < count; j++) {
                 if (copyList.isEmpty()) break;
 
@@ -89,10 +89,10 @@ public class PurchaseDummy extends MbDummy {
             //할인id 및 할인율 가져오기
             RandomDate randomDate = RandomDate.builder()
                     .startYear(2025)
-                    .startMonth(01)
-                    .startDate(01)
-                    .endMonth(11)
-                    .endDate(01)
+                    .startMonth(6)
+                    .startDate(20)
+                    .endMonth(7)
+                    .endDate(5)
                     .build();
 
             DiscountDto discountDto = DiscountDto.builder()
